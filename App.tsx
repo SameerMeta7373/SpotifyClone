@@ -15,7 +15,12 @@ function App() {
         BootSplash.hide();
       }}>
       <Stack.Navigator>
-        <Stack.Screen name="Welcome" component={WelcomeScreen}></Stack.Screen>
+        <Stack.Screen
+          name="Welcome"
+          component={WelcomeScreen}
+          options={{
+            headerShown: false,
+          }}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
