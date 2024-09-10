@@ -3,16 +3,17 @@ import {styles} from './style';
 import colors from '../../Utils/colors';
 import {image} from '../../Components/image';
 import CButton from '../../Components/Button';
+import Title from '../../Components/Title';
+import {INavigation} from '../../Constants/interface';
+import {FC} from 'react';
 
-function WelcomeScreen() {
+const WelcomeScreen: FC<INavigation> = ({navigation}) => {
   return (
     <View style={styles.rootContainer}>
       <View style={styles.imageContainer}>
         <Image style={styles.imageStyle} source={image.SpotifyLogo}></Image>
       </View>
-      <View style={styles.headerStyle}>
-        <Text style={[styles.text]}>Millions of songs Free on Spotify.</Text>
-      </View>
+      <Title children="Millions of songs Free on Spotify." />
       <CButton
         text="Sign up free"
         margin={{marginLeft: '35%'}}
@@ -34,19 +35,21 @@ function WelcomeScreen() {
         source={image.FacebookLogo}
         txtStyle={{fontSize: 20}}
       />
-      <View>
-        <Pressable style={({pressed}) => [pressed && styles.pressed]}>
-          <Text
-            style={[
-              styles.text,
-              {fontSize: 22, margin: 20, alignSelf: 'center'},
-            ]}>
-            Log in
-          </Text>
-        </Pressable>
-      </View>
+      <Pressable
+        onPress={() => {
+          navigation.navigate('Login');
+        }}
+        style={({pressed}) => [pressed && styles.pressed]}>
+        <Text
+          style={[
+            styles.text,
+            {fontSize: 22, margin: 20, alignSelf: 'center'},
+          ]}>
+          Log in
+        </Text>
+      </Pressable>
     </View>
   );
-}
+};
 
 export default WelcomeScreen;

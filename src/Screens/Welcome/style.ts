@@ -8,10 +8,9 @@ export const styles = StyleSheet.create({
     padding: 15,
   },
   text: {
-    alignSelf: 'center',
+    textAlign: 'center',
     color: colors.primaryWhite,
     fontSize: 30,
-    marginLeft: 30,
     fontWeight: 'bold',
   },
   imageContainer: {
@@ -26,6 +25,7 @@ export const styles = StyleSheet.create({
   },
   headerStyle: {
     margin: 40,
+    width: '70%',
     alignSelf: 'center',
   },
   pressed: {

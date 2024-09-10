@@ -5,6 +5,10 @@ import SafeAreaView from 'react-native-safe-area-view';
 import 'react-native-gesture-handler';
 
 import BootSplash from 'react-native-bootsplash';
+import Login from './src/Screens/LogIn';
+import LoginScreen from './src/Screens/LogIn';
+import colors from './src/Utils/colors';
+import SignUpScreen from './src/Screens/Signup';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,13 +18,29 @@ function App() {
       onReady={() => {
         BootSplash.hide();
       }}>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{contentStyle: {backgroundColor: colors.primaryBlack}}}>
         <Stack.Screen
           name="Welcome"
           component={WelcomeScreen}
           options={{
             headerShown: false,
-          }}></Stack.Screen>
+          }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUpScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

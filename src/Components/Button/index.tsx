@@ -1,25 +1,20 @@
-import {
-  Image,
-  Pressable,
-  StyleProp,
-  Text,
-  TextStyle,
-  View,
-  ViewStyle,
-} from 'react-native';
+import {Image, Pressable, Text, View} from 'react-native';
 import {styles} from '../Button/style';
+import {IButton} from '../../Constants/interface';
+import {FC} from 'react';
 
-interface IButton {
-  text: string;
-  source: string;
-  margin: StyleProp<ViewStyle>;
-  backColor: StyleProp<ViewStyle>;
-  txtStyle: StyleProp<TextStyle>;
-}
-
-function CButton({text, source, txtStyle, backColor, margin}: IButton) {
+const CButton: FC<IButton> = ({
+  text,
+  source,
+  txtStyle,
+  backColor,
+  margin,
+  onPress,
+}) => {
   return (
-    <Pressable style={({pressed}) => [pressed && styles.pressed]}>
+    <Pressable
+      onPress={onPress}
+      style={({pressed}) => [pressed && styles.pressed]}>
       <View style={[styles.innercontainer, backColor]}>
         {source && (
           <View>
@@ -30,6 +25,6 @@ function CButton({text, source, txtStyle, backColor, margin}: IButton) {
       </View>
     </Pressable>
   );
-}
+};
 
 export default CButton;
