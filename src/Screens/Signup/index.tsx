@@ -9,7 +9,7 @@ import {
 import CButton from '../../Components/Button';
 import Input from '../../Components/Input/input';
 import colors from '../../Utils/colors';
-import Title from '../../Components/Title';
+import Title from '../../Components/Title/Title';
 import {image} from '../../Components/image';
 import {INavigation} from '../../Constants/interface';
 import {FC} from 'react';

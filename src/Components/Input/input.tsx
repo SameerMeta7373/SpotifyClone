@@ -2,16 +2,9 @@ import {StyleSheet, Text, TextInput, View} from 'react-native';
 import colors from '../../Utils/colors';
 import {InputI} from '../../Constants/interface';
 import {FC} from 'react';
-import { styles } from './style';
+import {styles} from './style';
 
-
-const Input: FC<InputI> = ({
-  inputHeader,
-  textInputConfig,
-  invalid,
-  children,
-  header,
-}) => {
+const Input: FC<InputI> = ({textInputConfig, invalid, children, header}) => {
   const inputStyle = [styles.TextInput];
 
   if (textInputConfig && textInputConfig.multiLine) {
@@ -27,7 +20,7 @@ const Input: FC<InputI> = ({
         <Text style={{color: colors.primaryWhite}}>{header}</Text>
         <Text style={[styles.Text, invalid && styles.invalidLabel]}></Text>
         <TextInput
-          placeholderTextColor = {colors.primaryGrey}
+          placeholderTextColor={colors.primaryGrey}
           placeholder={children}
           style={inputStyle}
           {...textInputConfig}
@@ -36,6 +29,5 @@ const Input: FC<InputI> = ({
     </View>
   );
 };
-
 
 export default Input;

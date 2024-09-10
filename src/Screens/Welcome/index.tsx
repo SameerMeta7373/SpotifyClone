@@ -3,7 +3,7 @@ import {styles} from './style';
 import colors from '../../Utils/colors';
 import {image} from '../../Components/image';
 import CButton from '../../Components/Button';
-import Title from '../../Components/Title';
+import Title from '../../Components/Title/Title';
 import {INavigation} from '../../Constants/interface';
 import {FC} from 'react';
 
