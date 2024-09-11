@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {SectionList, StyleSheet, Text, View} from 'react-native';
 import colors from '../../Utils/colors';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import {HomeTitle} from '../../Components/Title/HomeTitle';
@@ -9,20 +9,11 @@ import {styles} from './style';
 
 const DATA = [
   {
-    title: 'Your Top Genres',
-    data: [
-      'Pop',
-      'Rock',
-      'Hip-Hop',
-      'Jazz',
-      'Classical',
-      'Electronic',
-      'Country',
-      'Reggae',
-    ],
+    title: 'Your top genres',
+    data: ['Pop', 'Bollywood'],
   },
   {
-    title: 'Browse All',
+    title: 'Browse all',
     data: [
       'Charts',
       'Podcasts',
@@ -32,9 +23,6 @@ const DATA = [
       'Made for You',
       'Live Events',
       'Discover',
-      'Workout',
-      'Mood',
-      'Chill',
     ],
   },
 ];
@@ -48,24 +36,18 @@ const SearchScreen = () => {
         <View>
           <SearchBar placeholder="Artist, songs, or podcasts" />
         </View>
-        <HomeTitle children="Your top genres" />
-        <View style={styles.card}>
-          <SearchCard children="Pop" />
-          <SearchCard children="Bollywood" />
-        </View>
-        <HomeTitle children="Browse all" />
-        <View style={styles.card}>
-          <SearchCard children="podcasts" />
-          <SearchCard children="New Releases" />
-        </View>
-        <View style={styles.card}>
-          <SearchCard children="Charts" />
-          <SearchCard children="Concerts" />
-        </View>
-        <View style={styles.card}>
-          <SearchCard children="Made for you" />
-          <SearchCard children="At Home" />
-        </View>
+        <SectionList
+          sections={DATA}
+          renderItem={({item}) => <SearchCard children={item} />}
+          renderSectionHeader={({section: {title}}) => (
+            <View style={styles.sectionHeader}>
+              <HomeTitle children={title} />
+            </View>
+          )}
+          keyExtractor={(item, index) => item + index.toString()}
+          style={styles.sectionList}
+          // contentContainerStyle={styles.contentContainer}
+        />
       </SafeAreaView>
     </ScrollView>
   );

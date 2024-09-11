@@ -14,7 +14,6 @@ export const HomeTitle: FC<INavigation> = ({children, style}) => {
 const styles = StyleSheet.create({
   root: {
     padding: 10,
-    marginVertical: 10,
   },
   titleText: {
     color: colors.primaryWhite,
