@@ -81,7 +81,7 @@ function HomeScreen({navigation}) {
 
   return (
     <LinearGradient
-      colors={['#565b64', '#1f1d1d', '#0f0f0f']}
+      colors={['#484C4D', '#121212', '#121212']}
       style={styles.linearGradient}>
       <ScrollView
         style={styles.rootContainer}
