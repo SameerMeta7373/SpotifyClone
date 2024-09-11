@@ -1,13 +1,5 @@
-import {
-  Image,
-  StyleSheet,
-  Text,
-  Touchable,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 import CButton from '../../Components/Button';
-import {Pressable, TextInput} from 'react-native-gesture-handler';
 import Input from '../../Components/Input/input';
 import colors from '../../Utils/colors';
 import Title from '../../Components/Title/Title';
@@ -30,7 +22,7 @@ const LoginScreen: FC<INavigation> = ({navigation}) => {
       <CButton
         text="Sign In"
         onPress={() => {
-          navigation.navigate('Home');
+          navigation.navigate('HomeScreen');
         }}
         margin={{marginLeft: '35%'}}
         backColor={{backgroundColor: colors.primaryTheme}}

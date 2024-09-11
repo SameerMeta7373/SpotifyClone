@@ -3,10 +3,14 @@ import HomeScreen from '../../Screens/Home';
 import colors from '../../Utils/colors';
 import Icons from '../ImageIcons/Icons';
 import {image} from '../image';
+import {FC} from 'react';
+import {IBottomTabNavigation} from '../../Constants/interface';
+import SearchScreen from '../../Screens/Search';
+import {Text} from 'react-native';
 
 const Bottom = createBottomTabNavigator();
 
-export const BottomTabNavigation = ({navigation}) => {
+export const BottomTabNavigation: FC<IBottomTabNavigation> = () => {
   return (
     <Bottom.Navigator
       screenOptions={{
@@ -30,8 +34,41 @@ export const BottomTabNavigation = ({navigation}) => {
         component={HomeScreen}
         options={{
           headerShown: false,
-          tabBarIcon: () => <Icons source={image.HomeLogo} />,
-          tabBarLabel: 'Home',
+          tabBarIcon: ({focused}) => (
+            <Icons
+              color={focused ? colors.primaryWhite : colors.primaryGrey}
+              source={image.HomeLogo}
+            />
+          ),
+          tabBarLabel: ({focused}) => (
+            <Text
+              style={{
+                color: focused ? colors.primaryWhite : colors.primaryGrey,
+              }}>
+              Home
+            </Text>
+          ),
+        }}
+      />
+      <Bottom.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({focused}) => (
+            <Icons
+              color={focused ? colors.primaryWhite : colors.primaryGrey}
+              source={image.SearchWhite}
+            />
+          ),
+          tabBarLabel: ({focused}) => (
+            <Text
+              style={{
+                color: focused ? colors.primaryWhite : colors.primaryGrey,
+              }}>
+              Search
+            </Text>
+          ),
         }}
       />
     </Bottom.Navigator>

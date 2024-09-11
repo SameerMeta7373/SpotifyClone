@@ -3,10 +3,10 @@ import {INavigation} from '../../Constants/interface';
 import {StyleSheet, Text, View} from 'react-native';
 import colors from '../../Utils/colors';
 
-export const HomeTitle: FC<INavigation> = ({children}) => {
+export const HomeTitle: FC<INavigation> = ({children, style}) => {
   return (
     <View style={styles.root}>
-      <Text style={styles.titleText}>{children}</Text>
+      <Text style={[styles.titleText,style]}>{children}</Text>
     </View>
   );
 };

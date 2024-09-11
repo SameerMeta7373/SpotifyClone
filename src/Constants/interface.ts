@@ -1,6 +1,11 @@
 import {NavigationAction} from '@react-navigation/native';
 import {ReactNode} from 'react';
-import {StyleProp, ViewStyle, TextStyle, ImageSourcePropType} from 'react-native';
+import {
+  StyleProp,
+  ViewStyle,
+  TextStyle,
+  ImageSourcePropType,
+} from 'react-native';
 
 export interface InputI {
   Header: string;
@@ -20,12 +25,26 @@ export interface IButton {
   txtStyle: StyleProp<TextStyle>;
 }
 export interface INavigation {
-  navigation: any;
+  navigation?: any;
+  style ?: StyleProp<TextStyle>
   children?: ReactNode;
-  source : ImageSourcePropType
+  source?: ImageSourcePropType;
 }
 
 export interface IconsI {
   source: ImageSourcePropType;
   onPress?: () => {};
+  color? : string
+  style? : StyleProp<ViewStyle>
+}
+
+export interface IBottomTabNavigation {
+  navigation: any;
+}
+export interface ISearchBar {
+  placeholder: string;
+  onSearch?: ()=>void
+}
+export interface ISearchCard{
+  children : string
 }

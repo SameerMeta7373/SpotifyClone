@@ -47,7 +47,7 @@ function App() {
             }}
           />
           <Stack.Screen
-            name="Home"
+            name="HomeScreen"
             component={BottomTabNavigation}
             options={{
               headerShown: false,
