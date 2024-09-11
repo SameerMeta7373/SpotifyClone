@@ -7,6 +7,7 @@ import {FC} from 'react';
 import {IBottomTabNavigation} from '../../Constants/interface';
 import SearchScreen from '../../Screens/Search';
 import {Text} from 'react-native';
+import { StackScreen } from './Stack';
 
 const Bottom = createBottomTabNavigator();
 
@@ -31,7 +32,7 @@ export const BottomTabNavigation: FC<IBottomTabNavigation> = () => {
       }}>
       <Bottom.Screen
         name="Home"
-        component={HomeScreen}
+        component={StackScreen}
         options={{
           headerShown: false,
           tabBarIcon: ({focused}) => (
@@ -71,6 +72,7 @@ export const BottomTabNavigation: FC<IBottomTabNavigation> = () => {
           ),
         }}
       />
+      
     </Bottom.Navigator>
   );
 };

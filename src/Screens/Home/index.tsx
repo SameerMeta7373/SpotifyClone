@@ -7,9 +7,9 @@ import {Card} from '../../Components/Card/Card';
 import {image} from '../../Components/image';
 import Icons from '../../Components/ImageIcons/Icons';
 import {styles} from './style';
-import {HomeList} from '../../Components/HomeList';
+import {List} from '../../Components/List/flatList';
 
-function HomeScreen() {
+function HomeScreen({navigation}) {
   const singers = [
     {id: '1', name: 'Ed Shereen', image: image.Artist},
     {id: '2', name: 'Justin Bieber', image: image.Artist},
@@ -94,11 +94,11 @@ function HomeScreen() {
             <Icons style={{marginLeft: 23}} source={image.SettingsLogo} />
           </View>
         </View>
-        <HomeList data={singers} renderItem={renderSingerItem} />
+        <List data={singers} renderItem={renderSingerItem} />
         <HomeTitle>Trending now</HomeTitle>
-        <HomeList data={trendingSongs} renderItem={renderSongItem} />
+        <List data={trendingSongs} renderItem={renderSongItem} />
         <HomeTitle>Top picks for you</HomeTitle>
-        <HomeList data={topPicksSongs} renderItem={renderSongItem} />
+        <List data={topPicksSongs} renderItem={renderSongItem} />
       </ScrollView>
     </LinearGradient>
   );

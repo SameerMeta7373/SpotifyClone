@@ -1,15 +1,17 @@
 import {FC} from 'react';
 import {INavigation} from '../../Constants/interface';
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
-import {image} from '../image';
 import {styles} from './style';
 import colors from '../../Utils/colors';
+import {useNavigation} from '@react-navigation/native';
 
 export const Card: FC<INavigation> = ({source}) => {
+  const navigation = useNavigation();
+
   return (
     <Pressable
       style={({pressed}) => [pressed && styles.pressed]}
-      onPress={() => {}}>
+      onPress={() => navigation.navigate('PlayList')}>
       <View style={styles.container}>
         <Image style={styles.imageStyle} source={source} />
         <View style={{width: '30%'}}>

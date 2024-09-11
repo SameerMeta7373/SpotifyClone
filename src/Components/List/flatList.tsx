@@ -1,9 +1,8 @@
 import {View, FlatList} from 'react-native';
-import {Card} from './Card/Card';
-import {image} from './image';
+import {Card} from '../Card/Card';
+import {image} from '../image';
 
-export function HomeList({renderItem, data}) {
-  
+export function List({renderItem, data}) {
   return (
     <FlatList
       data={data}

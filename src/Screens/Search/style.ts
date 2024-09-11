@@ -11,9 +11,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   sectionHeader: {
-    marginRight: '40%',
-    backgroundColor: 'red',
-    // flex : 1
+    minWidth: 600,
   },
   sectionList: {
     marginTop: 20,
