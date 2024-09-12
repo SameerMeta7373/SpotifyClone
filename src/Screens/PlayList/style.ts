@@ -4,13 +4,13 @@ import colors from '../../Utils/colors';
 const styles = StyleSheet.create({
   upperConatiner: {
     justifyContent: 'center',
-    padding : 20,
-    flexDirection : 'row',
+    padding: 20,
+    flexDirection: 'row',
     alignItems: 'center',
   },
   songDescription: {
     fontSize: 17,
-    color: colors.primaryGrey,
+    color: '#A8A8A8',
     paddingBottom: 20,
   },
   lowerContainer: {
@@ -22,9 +22,9 @@ const styles = StyleSheet.create({
     height: 35,
     margin: 5,
   },
-  pressed : {
-    opacity : 0.75
-},
+  pressed: {
+    opacity: 0.75,
+  },
   properties: {
     resizeMode: 'contain',
     height: 35,
