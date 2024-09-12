@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../Utils/colors';
+import Fonts from '../../Utils/Fonts';
 
 export const styles = StyleSheet.create({
   ImageContainer: {
@@ -17,11 +18,13 @@ export const styles = StyleSheet.create({
   },
   songName: {
     fontSize: 24,
+    fontFamily: Fonts.Gotham,
     color: colors.primaryWhite,
     fontWeight: '600',
   },
   singerName: {
     fontSize: 20,
+    fontFamily: Fonts.Gotham,
     color: colors.primaryWhite,
     fontWeight: '600',
   },
@@ -52,15 +55,18 @@ export const styles = StyleSheet.create({
     color: colors.primaryWhite,
     fontWeight: '700',
     padding: 20,
+    fontFamily: Fonts.Poppins,
   },
   headerSongName: {
     fontSize: 19,
     color: colors.primaryWhite,
+    fontFamily: Fonts.Poppins,
     fontWeight: '600',
     alignSelf: 'center',
   },
   rootHeader: {
     fontSize: 16,
+    fontFamily: Fonts.Poppins,
     color: colors.primaryWhite,
     fontWeight: '500',
   },

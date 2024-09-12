@@ -1,8 +1,12 @@
-import {View, FlatList} from 'react-native';
+import {View, FlatList, ListRenderItem} from 'react-native';
 import {Card} from '../Card/Card';
 import {image} from '../image';
+import {FC} from 'react';
+import { IList } from '../../Constants/interface';
 
-export function List({renderItem, data}) {
+
+
+export const List: FC<IList> = ({renderItem, data}) => {
   return (
     <FlatList
       data={data}
@@ -13,4 +17,4 @@ export function List({renderItem, data}) {
       style={{marginBottom: 10}}
     />
   );
-}
+};

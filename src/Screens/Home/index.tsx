@@ -8,8 +8,10 @@ import {image} from '../../Components/image';
 import Icons from '../../Components/ImageIcons/Icons';
 import {styles} from './style';
 import {List} from '../../Components/List/flatList';
+import {FC} from 'react';
+import {IrenderSongItem} from '../../Constants/interface';
 
-function HomeScreen({navigation}) {
+function HomeScreen() {
   const singers = [
     {id: '1', name: 'Ed Shereen', image: image.Artist},
     {id: '2', name: 'Justin Bieber', image: image.Artist},
@@ -40,7 +42,6 @@ function HomeScreen({navigation}) {
       singer: 'Justin Bieber',
       cover: image.Artist,
     },
-    // Add more items as needed
   ];
 
   const topPicksSongs = [
@@ -68,12 +69,11 @@ function HomeScreen({navigation}) {
       singer: 'Justin Bieber',
       cover: image.Artist,
     },
-    // Add more items as needed
   ];
 
-  const renderSingerItem = ({item}) => <Card source={image.Artist} />;
+  const renderSingerItem = () => <Card source={image.Artist} />;
 
-  const renderSongItem = ({item}) => (
+  const renderSongItem: FC<IrenderSongItem> = ({item}) => (
     <View style={{flexDirection: 'row', marginBottom: 10}}>
       <Card source={item.cover} />
     </View>

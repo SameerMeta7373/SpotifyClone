@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../Utils/colors';
+import Fonts from '../../Utils/Fonts';
 
 export const styles = StyleSheet.create({
   rootContainer: {
@@ -11,11 +12,11 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     color: colors.primaryWhite,
     fontSize: 30,
+    fontFamily : Fonts.Poppins,
     fontWeight: 'bold',
   },
   imageContainer: {
-    padding: 20,
-    marginTop: '30%',
+    marginTop: '50%',
     alignSelf: 'center',
     flex: 0.6,
   },

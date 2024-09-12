@@ -2,7 +2,8 @@ import {FlatList, Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import {image} from '../../image';
 import Icons from '../../ImageIcons/Icons';
 import {styles} from './style';
-
+import {FC} from 'react';
+import {IListCard} from '../../../Constants/interface';
 export const DATA = [
   {
     id: '1',
@@ -76,7 +77,7 @@ export const DATA = [
   },
 ];
 
-function ListCard({onPress}) {
+const ListCard: FC<IListCard> = ({onPress}) => {
   return (
     <FlatList
       data={DATA}
@@ -111,6 +112,6 @@ function ListCard({onPress}) {
       keyExtractor={item => item.id}
     />
   );
-}
+};
 
 export default ListCard;

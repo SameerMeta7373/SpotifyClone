@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../Utils/colors';
+import Fonts from '../../Utils/Fonts';
 
 export const styles = StyleSheet.create({
   linearGradient: {
@@ -7,7 +8,7 @@ export const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    fontFamily: 'Gill Sans',
+    fontFamily: Fonts.Poppins,
     textAlign: 'center',
     margin: 10,
     color: colors.primaryWhite,
@@ -33,6 +34,7 @@ export const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
+    fontFamily: Fonts.Gotham,
     color: colors.primaryWhite,
     marginBottom: 10,
   },

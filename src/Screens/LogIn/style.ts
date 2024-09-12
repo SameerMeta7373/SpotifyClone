@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import colors from "../../Utils/colors";
+import Fonts from "../../Utils/Fonts";
 
 export const styles = StyleSheet.create({
     imageContainer: {
@@ -17,6 +18,7 @@ export const styles = StyleSheet.create({
     underText: {
       textDecorationLine: 'underline',
       fontSize: 14,
+      fontFamily : Fonts.Poppins,
       color: colors.primaryTheme,
     },
     bottomContainer: {

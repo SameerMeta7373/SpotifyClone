@@ -2,6 +2,7 @@ import {FC} from 'react';
 import {INavigation} from '../../Constants/interface';
 import {StyleSheet, Text, View} from 'react-native';
 import colors from '../../Utils/colors';
+import Fonts from '../../Utils/Fonts';
 
 export const HomeTitle: FC<INavigation> = ({children, style}) => {
   return (
@@ -18,6 +19,7 @@ const styles = StyleSheet.create({
   titleText: {
     color: colors.primaryWhite,
     fontSize: 28,
+    fontFamily : Fonts.Gotham,
     fontWeight: '800',
   },
 });

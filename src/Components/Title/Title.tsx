@@ -2,6 +2,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import colors from '../../Utils/colors';
 import {INavigation} from '../../Constants/interface';
 import {FC} from 'react';
+import Fonts from '../../Utils/Fonts';
 
 const Title: FC<INavigation> = ({children}) => {
   return (
@@ -21,6 +22,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: colors.primaryWhite,
     fontSize: 30,
+    fontFamily: Fonts.Gotham,
     fontWeight: 'bold',
   },
 });

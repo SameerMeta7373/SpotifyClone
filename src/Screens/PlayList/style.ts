@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../Utils/colors';
+import Fonts from '../../Utils/Fonts';
 
 const styles = StyleSheet.create({
   upperConatiner: {
@@ -11,6 +12,7 @@ const styles = StyleSheet.create({
   songDescription: {
     fontSize: 17,
     color: '#A8A8A8',
+    fontFamily : Fonts.Poppins,
     paddingBottom: 20,
   },
   lowerContainer: {

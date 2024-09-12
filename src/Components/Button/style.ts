@@ -1,9 +1,10 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../Utils/colors';
+import Fonts from '../../Utils/Fonts';
 
 export const styles = StyleSheet.create({
   innercontainer: {
-    flexDirection: 'row', // Lay out children side by side
+    flexDirection: 'row', 
     paddingVertical: 12,
     borderWidth: 0.8,
     margin: 6,
@@ -15,6 +16,7 @@ export const styles = StyleSheet.create({
     color: colors.primaryWhite,
     fontSize: 30,
     marginLeft: 20,
+    fontFamily : Fonts.Poppins,
     fontWeight: 'bold',
   },
   logoStyle: {

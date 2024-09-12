@@ -6,6 +6,7 @@ import {
   TextStyle,
   ImageSourcePropType,
   ImageStyle,
+  ListRenderItem,
 } from 'react-native';
 
 export interface InputI {
@@ -45,7 +46,20 @@ export interface IBottomTabNavigation {
 export interface ISearchBar {
   placeholder: string;
   onSearch?: () => void;
+  
 }
 export interface ISearchCard {
   children: string;
+}
+
+export interface IListCard {
+  onPress: () => void;
+}
+
+export interface IrenderSongItem {
+  item: any;
+}
+export interface IList {
+  renderItem: ListRenderItem<string>;
+  data: string;
 }

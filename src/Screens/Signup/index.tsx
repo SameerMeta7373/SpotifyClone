@@ -13,7 +13,7 @@ import Title from '../../Components/Title/Title';
 import {image} from '../../Components/image';
 import {INavigation} from '../../Constants/interface';
 import {FC} from 'react';
-import { styles } from './style';
+import {styles} from './style';
 
 const SignUpScreen: FC<INavigation> = ({navigation}) => {
   return (
@@ -22,10 +22,10 @@ const SignUpScreen: FC<INavigation> = ({navigation}) => {
         <Image style={styles.imageStyle} source={image.SpotifyColorLogo} />
       </View>
       <Title children="Enjoy Listening To Music." />
-      <View style={{marginBottom: 30}}>
-        <Input children='Enter Your UserName.'/>
-        <Input children='Enter Your Email.'/>
-        <Input children='Enter Password'/>
+      <View style={{marginBottom: 20}}>
+        <Input children="Enter Your UserName." />
+        <Input children="Enter Your Email." />
+        <Input children="Enter Password" />
       </View>
       <CButton
         onPress={() => {
@@ -38,14 +38,7 @@ const SignUpScreen: FC<INavigation> = ({navigation}) => {
       />
 
       <View style={styles.bottomContainer}>
-        <Text
-          style={{
-            color: colors.primaryWhite,
-            textAlign: 'center',
-            padding: 10,
-          }}>
-          Already have an account?
-        </Text>
+        <Text style={styles.signUpText}>Already have an account?</Text>
         <TouchableOpacity
           activeOpacity={0.5}
           onPress={() => {
@@ -57,6 +50,5 @@ const SignUpScreen: FC<INavigation> = ({navigation}) => {
     </View>
   );
 };
-
 
 export default SignUpScreen;

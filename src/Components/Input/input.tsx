@@ -4,7 +4,7 @@ import {InputI} from '../../Constants/interface';
 import {FC} from 'react';
 import {styles} from './style';
 
-const Input: FC<InputI> = ({textInputConfig, invalid, children, header}) => {
+const Input: FC<InputI> = ({textInputConfig, invalid, children, }) => {
   const inputStyle = [styles.TextInput];
 
   if (textInputConfig && textInputConfig.multiLine) {
@@ -15,17 +15,14 @@ const Input: FC<InputI> = ({textInputConfig, invalid, children, header}) => {
   }
 
   return (
-    <View>
-      <View style={styles.inputContainer}>
-        <Text style={{color: colors.primaryWhite}}>{header}</Text>
-        <Text style={[styles.Text, invalid && styles.invalidLabel]}></Text>
-        <TextInput
-          placeholderTextColor={colors.primaryGrey}
-          placeholder={children}
-          style={inputStyle}
-          {...textInputConfig}
-        />
-      </View>
+    <View style={styles.inputContainer}>
+      <Text style={[styles.Text, invalid && styles.invalidLabel]}></Text>
+      <TextInput
+        placeholderTextColor={colors.primaryGrey}
+        placeholder={children}
+        style={inputStyle}
+        {...textInputConfig}
+      />
     </View>
   );
 };

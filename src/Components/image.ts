@@ -27,6 +27,6 @@ export const image = {
   Share: require('../Assets/Images/Share.png'),
   Shuffle: require('../Assets/Images/Shuffle.png'),
   StayPoster: require('../Assets/Images/StayPoster.png'),
-  Pause : require('../Assets/Images/Pause.png'),
-  WhitePlayButton : require('../Assets/Images/WhitePlayButton.png')
+  Pause: require('../Assets/Images/Pause.png'),
+  WhitePlayButton: require('../Assets/Images/WhitePlayButton.png'),
 };

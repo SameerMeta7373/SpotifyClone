@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../Utils/colors';
+import Fonts from '../../Utils/Fonts';
 
 export const styles = StyleSheet.create({
   rootContainer: {
@@ -11,6 +12,7 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     padding: 12,
     width: 130,
+    fontFamily : Fonts.Gotham,
     color: colors.primaryWhite,
   },
   innerContainer: {

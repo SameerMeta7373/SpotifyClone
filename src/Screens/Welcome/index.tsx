@@ -6,6 +6,7 @@ import CButton from '../../Components/Button';
 import Title from '../../Components/Title/Title';
 import {INavigation} from '../../Constants/interface';
 import {FC} from 'react';
+import Fonts from '../../Utils/Fonts';
 
 const WelcomeScreen: FC<INavigation> = ({navigation}) => {
   return (
@@ -16,9 +17,12 @@ const WelcomeScreen: FC<INavigation> = ({navigation}) => {
       <Title children="Millions of songs Free on Spotify." />
       <CButton
         text="Sign up free"
+        onPress={() => {
+          navigation.navigate('SignUp');
+        }}
         margin={{marginLeft: '35%'}}
         backColor={{backgroundColor: colors.primaryTheme}}
-        txtStyle={{fontSize: 20, color: colors.primaryBlack}}
+        txtStyle={{fontSize: 22 ,color: colors.primaryBlack, fontFamily : Fonts.Poppins}}
       />
       <CButton
         text="Continue with phone number"
