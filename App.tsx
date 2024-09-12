@@ -1,18 +1,19 @@
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import WelcomeScreen from './src/Screens/Welcome';
 import 'react-native-gesture-handler';
-
 import BootSplash from 'react-native-bootsplash';
 import LoginScreen from './src/Screens/LogIn';
 import colors from './src/Utils/colors';
 import SignUpScreen from './src/Screens/Signup';
-
-import HomeScreen from './src/Screens/Home';
 import {BottomTabNavigation} from './src/Components/Navigation/BottomTab';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import Icons from './src/Components/ImageIcons/Icons';
+import {image} from './src/Components/image';
+import {MusicPlayer} from './src/Screens/MusicPlayer';
+import AuthStack from './src/Components/Navigation/Auth';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 function App() {
   return (
@@ -23,25 +24,11 @@ function App() {
         }}>
         <Stack.Navigator
           screenOptions={{
-            contentStyle: {backgroundColor: colors.primaryBlack},
+            cardStyle: {backgroundColor: colors.primaryBlack},
           }}>
           <Stack.Screen
-            name="Welcome"
-            component={WelcomeScreen}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="Login"
-            component={LoginScreen}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="SignUp"
-            component={SignUpScreen}
+            name="Auth"
+            component={AuthStack}
             options={{
               headerShown: false,
             }}
@@ -53,6 +40,7 @@ function App() {
               headerShown: false,
             }}
           />
+          
         </Stack.Navigator>
       </NavigationContainer>
     </GestureHandlerRootView>
