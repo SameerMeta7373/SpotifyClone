@@ -1,6 +1,5 @@
 import {FlatList, Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import {image} from '../../Components/image';
-import colors from '../../Utils/colors';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from './style';
 import ListCard from '../../Components/List/PlayList/PlayList';
