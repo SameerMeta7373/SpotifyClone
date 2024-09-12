@@ -11,15 +11,22 @@ export const image = {
   Artist: require('../Assets/Images/EdSheeran.png'),
   SearchBlack: require('../Assets/Images/SearchBlack.png'),
   SearchWhite: require('../Assets/Images/SearchWhite.png'),
-  ArtistProfile : require('../Assets/Images/ArtistProfile.png'),
-  back : require('../Assets/Images/back.png'),
-  believer : require('../Assets/Images/believer.png'),
-  Heart : require('../Assets/Images/Heart.png'),
-  Lyrics : require('../Assets/Images/Lyrics.png'),
-  PlayButton : require('../Assets/Images/PlayButton.png'),
-  Properties : require('../Assets/Images/Properties.png'),
-  SpotifySmallLogo : require('../Assets/Images/SpotifySmallLogo.png'),
-
-
-
+  ArtistProfile: require('../Assets/Images/ArtistProfile.png'),
+  back: require('../Assets/Images/back.png'),
+  believer: require('../Assets/Images/believer.png'),
+  Heart: require('../Assets/Images/Heart.png'),
+  Lyrics: require('../Assets/Images/Lyrics.png'),
+  PlayButton: require('../Assets/Images/PlayButton.png'),
+  Properties: require('../Assets/Images/Properties.png'),
+  SpotifySmallLogo: require('../Assets/Images/SpotifySmallLogo.png'),
+  BelowArrow: require('../Assets/Images/BelowArrow.png'),
+  Cast: require('../Assets/Images/Cast.png'),
+  Loop: require('../Assets/Images/Loop.png'),
+  NextPlay: require('../Assets/Images/NextPlay.png'),
+  PreviousPlay: require('../Assets/Images/PreviousPlay.png'),
+  Share: require('../Assets/Images/Share.png'),
+  Shuffle: require('../Assets/Images/Shuffle.png'),
+  StayPoster: require('../Assets/Images/StayPoster.png'),
+  Pause : require('../Assets/Images/Pause.png'),
+  WhitePlayButton : require('../Assets/Images/WhitePlayButton.png')
 };
