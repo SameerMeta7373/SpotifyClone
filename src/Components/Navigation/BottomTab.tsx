@@ -7,7 +7,7 @@ import {FC} from 'react';
 import {IBottomTabNavigation} from '../../Constants/interface';
 import SearchScreen from '../../Screens/Search';
 import {Text} from 'react-native';
-import { StackScreen } from './Stack';
+import {StackScreen} from './HomeStack';
 
 const Bottom = createBottomTabNavigator();
 
@@ -72,7 +72,6 @@ export const BottomTabNavigation: FC<IBottomTabNavigation> = () => {
           ),
         }}
       />
-      
     </Bottom.Navigator>
   );
 };
