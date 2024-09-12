@@ -5,15 +5,16 @@ import {
   ViewStyle,
   TextStyle,
   ImageSourcePropType,
+  ImageStyle,
 } from 'react-native';
 
 export interface InputI {
-  Header: string;
-  textInputConfig: {};
-  invalid: string;
+  Header?: string;
+  textInputConfig?: {};
+  invalid?: string;
   children: string;
-  header: string;
-  inputHeader: string;
+  header?: string;
+  inputHeader?: string;
 }
 
 export interface IButton {
@@ -26,16 +27,16 @@ export interface IButton {
 }
 export interface INavigation {
   navigation?: any;
-  style ?: StyleProp<TextStyle>
+  style?: StyleProp<TextStyle>;
   children?: ReactNode;
   source?: ImageSourcePropType;
 }
 
 export interface IconsI {
   source: ImageSourcePropType;
-  onPress?: () => {};
-  color? : string
-  style? : StyleProp<ViewStyle>
+  onPress?: () => void;
+  color?: string;
+  style?: StyleProp<ImageStyle>;
 }
 
 export interface IBottomTabNavigation {
@@ -43,8 +44,8 @@ export interface IBottomTabNavigation {
 }
 export interface ISearchBar {
   placeholder: string;
-  onSearch?: ()=>void
+  onSearch?: () => void;
 }
-export interface ISearchCard{
-  children : string
+export interface ISearchCard {
+  children: string;
 }
