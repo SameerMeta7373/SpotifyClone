@@ -4,24 +4,18 @@ import {SearchCard} from '../SearchCards/SearchCards';
 import {HomeTitle} from '../Title/HomeTitle';
 import {styles} from '../../Screens/Search/style';
 
-export function SList() {
+export function SList({categories, genres}) {
+  const catResposne = categories.map(cat => cat.name);
+  
+
   const DATA = [
     {
       title: 'Your top genres',
-      data: ['Pop', 'Bollywood'],
+      data: genres,
     },
     {
       title: 'Browse all',
-      data: [
-        'Charts',
-        'Podcasts',
-        'Concerts',
-        'New Releases',
-        'Top 10',
-        'Made for You',
-        'Live Events',
-        'Discover',
-      ],
+      data: catResposne,
     },
   ];
   return (
