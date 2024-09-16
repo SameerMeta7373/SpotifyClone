@@ -8,10 +8,12 @@ import {IBottomTabNavigation} from '../../Constants/interface';
 import SearchScreen from '../../Screens/Search';
 import {Text} from 'react-native';
 import {StackScreen} from './HomeStack';
+import {useNavigation} from '@react-navigation/native';
 
 const Bottom = createBottomTabNavigator();
 
 export const BottomTabNavigation: FC<IBottomTabNavigation> = () => {
+  const navigation = useNavigation();
   return (
     <Bottom.Navigator
       screenOptions={{
@@ -38,6 +40,9 @@ export const BottomTabNavigation: FC<IBottomTabNavigation> = () => {
           tabBarIcon: ({focused}) => (
             <Icons
               color={focused ? colors.primaryWhite : colors.primaryGrey}
+              onPress={() => {
+                navigation.navigate('HomePage');
+              }}
               source={image.HomeLogo}
             />
           ),
@@ -60,6 +65,7 @@ export const BottomTabNavigation: FC<IBottomTabNavigation> = () => {
             <Icons
               color={focused ? colors.primaryWhite : colors.primaryGrey}
               source={image.SearchWhite}
+              onPress={()=>{navigation.navigate('Search')}}
             />
           ),
           tabBarLabel: ({focused}) => (

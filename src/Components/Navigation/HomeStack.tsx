@@ -12,14 +12,15 @@ import PlayList from '../../Screens/PlayList';
 import {image} from '../image';
 import {MusicPlayer} from '../../Screens/MusicPlayer';
 import Icons from '../ImageIcons/Icons';
+import {createStackNavigator} from '@react-navigation/stack';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 export function StackScreen() {
   return (
     <Stack.Navigator
       screenOptions={{
-        contentStyle: {backgroundColor: colors.primaryBlack},
+        cardStyle: {backgroundColor: colors.primaryBlack},
       }}>
       <Stack.Screen
         name="HomePage"
@@ -37,28 +38,10 @@ export function StackScreen() {
           headerLeft: () => (
             <Icons
               source={image.back}
-              onPress={() => props?.navigation?.goBack()}
-            />
-          ),
-        })}
-      />
-      <Stack.Screen
-        name="MusicPlayer"
-        component={MusicPlayer}
-        options={props => ({
-          presentation: 'modal',
-          headerTransparent: true,
-          headerLeft: () => (
-            <Icons
               style={{marginLeft: 20}}
-              source={image.BelowArrow}
               onPress={() => props?.navigation?.goBack()}
             />
           ),
-          headerRight: () => (
-            <Icons style={{resizeMode: 'contain'}} source={image.Properties} />
-          ),
-          headerTitle: '',
         })}
       />
     </Stack.Navigator>

@@ -8,10 +8,26 @@ import {image} from '../../Components/image';
 import Icons from '../../Components/ImageIcons/Icons';
 import {styles} from './style';
 import {List} from '../../Components/List/flatList';
-import {FC} from 'react';
+import {FC, useEffect, useState} from 'react';
 import {IrenderSongItem} from '../../Constants/interface';
+import {Apis} from '../../Utils/https';
 
 function HomeScreen() {
+  const [artist, setArtist] = useState([]);
+
+  const getAlbums = async () => {
+    const response = await Apis.getSeveralAlbums();
+    // console.log('response==>', response);
+
+    console.log("response.albums[0].images[0].url ====>" , response.albums[0].images[0].url);
+    
+    setArtist(response.albums[0].images[0].url || []);
+    console.log('artist ====>', artist);
+  };
+
+  useEffect(() => {
+    getAlbums();
+  }, []);
   const singers = [
     {id: '1', name: 'Ed Shereen', image: image.Artist},
     {id: '2', name: 'Justin Bieber', image: image.Artist},
@@ -71,11 +87,11 @@ function HomeScreen() {
     },
   ];
 
-  const renderSingerItem = () => <Card source={image.Artist} />;
+  const renderSingerItem = () => <Card source={artist} />;
 
   const renderSongItem: FC<IrenderSongItem> = ({item}) => (
     <View style={{flexDirection: 'row', marginBottom: 10}}>
-      <Card source={item.cover} />
+      <Card />
     </View>
   );
 

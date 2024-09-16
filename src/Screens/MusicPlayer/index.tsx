@@ -48,7 +48,7 @@ export function MusicPlayer() {
           maximumValue={1}
           thumbTintColor={colors.primaryWhite}
           minimumTrackTintColor={colors.primaryWhite}
-          maximumTrackTintColor=" #3D3C38"
+          maximumTrackTintColor="grey"
         />
         <View style={styles.songControllContainer}>
           <Icons source={image.Shuffle} />

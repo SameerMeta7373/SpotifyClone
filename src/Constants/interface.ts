@@ -30,7 +30,7 @@ export interface INavigation {
   navigation?: any;
   style?: StyleProp<TextStyle>;
   children?: ReactNode;
-  source?: ImageSourcePropType;
+  source?: string;
 }
 
 export interface IconsI {

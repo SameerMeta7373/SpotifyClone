@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: Fonts.Gotham,
     color: colors.primaryWhite,
-    fontWeight: '600',
+    fontWeight: 'bold',
   },
   singerName: {
     fontSize: 20,
