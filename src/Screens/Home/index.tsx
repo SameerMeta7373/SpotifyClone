@@ -11,89 +11,66 @@ import {List} from '../../Components/List/flatList';
 import {FC, useEffect, useState} from 'react';
 import {IrenderSongItem} from '../../Constants/interface';
 import {Apis} from '../../Utils/https';
+import {useNavigation} from '@react-navigation/native';
 
 function HomeScreen() {
-  const [artist, setArtist] = useState([]);
+  const navigation = useNavigation();
+  const [albums, setAlbums] = useState([]);
+  const [tracks, setTracks] = useState([]);
+  const [recommendedSongs, setrecommendedSongs] = useState([]);
+  
 
   const getAlbums = async () => {
     const response = await Apis.getSeveralAlbums();
-    // console.log('response==>', response);
 
-    console.log("response.albums[0].images[0].url ====>" , response.albums[0].images[0].url);
-    
-    setArtist(response.albums[0].images[0].url || []);
-    console.log('artist ====>', artist);
+    console.log('albums===>', JSON.stringify(response));
+
+    setAlbums(response.albums.items);
+  };
+
+  const getTracks = async () => {
+    const response = await Apis.getSeveralTracks();
+    setTracks(response.tracks);
+  };
+
+  const getRecommendation = async () => {
+    const response = await Apis.getRecommendations();
+    setrecommendedSongs(response.tracks);
   };
 
   useEffect(() => {
     getAlbums();
+    getTracks();
+    getRecommendation();
   }, []);
-  const singers = [
-    {id: '1', name: 'Ed Shereen', image: image.Artist},
-    {id: '2', name: 'Justin Bieber', image: image.Artist},
-  ];
 
-  const trendingSongs = [
-    {
-      id: '1',
-      name: 'Song One',
-      singer: 'Ed Shereen',
-      cover: image.Artist,
-    },
-    {
-      id: '2',
-      name: 'Song Two',
-      singer: 'Justin Bieber',
-      cover: image.Artist,
-    },
-    {
-      id: '12',
-      name: 'Song One',
-      singer: 'Ed Shereen',
-      cover: image.Artist,
-    },
-    {
-      id: '22',
-      name: 'Song Two',
-      singer: 'Justin Bieber',
-      cover: image.Artist,
-    },
-  ];
+  const renderSingerItem = ({item}) => {
+    const artistNames = item.artists.map(item => item?.name).join();
+    return <Card source={{uri: item.images[0].url}} name={artistNames} onPress={() => navigation.navigate('PlayList' , {id : item.id}) } />;
+  };
 
-  const topPicksSongs = [
-    {
-      id: '1',
-      name: 'Pick One',
-      singer: 'Ed Shereen',
-      cover: image.Artist,
-    },
-    {
-      id: '2',
-      name: 'Pick Two',
-      singer: 'Justin Bieber',
-      cover: image.Artist,
-    },
-    {
-      id: '12',
-      name: 'Pick One',
-      singer: 'Ed Shereen',
-      cover: image.Artist,
-    },
-    {
-      id: '22',
-      name: 'Pick Two',
-      singer: 'Justin Bieber',
-      cover: image.Artist,
-    },
-  ];
+  const renderSongItem: FC<IrenderSongItem> = ({item}) => {
+    return (
+      <View style={{flexDirection: 'row', marginBottom: 10}}>
+        <Card
+          title={item?.name}
+          name={item?.artists?.map(item => item?.name)}
+        />
+      </View>
+    );
+  };
 
-  const renderSingerItem = () => <Card source={artist} />;
-
-  const renderSongItem: FC<IrenderSongItem> = ({item}) => (
-    <View style={{flexDirection: 'row', marginBottom: 10}}>
-      <Card />
-    </View>
-  );
+  const recommendation = ({item}) => {
+    return (
+      <View style={{flexDirection: 'row', marginBottom: 10}}>
+        <Card
+          title={item?.name}
+          // onPress={}
+          name={'Song . ' + item?.artists?.map(item => item?.name).join()}
+        />
+      </View>
+    );
+  };
 
   return (
     <LinearGradient
@@ -110,11 +87,11 @@ function HomeScreen() {
             <Icons style={{marginLeft: 23}} source={image.SettingsLogo} />
           </View>
         </View>
-        <List data={singers} renderItem={renderSingerItem} />
+        <List data={albums} renderItem={renderSingerItem} />
         <HomeTitle>Trending now</HomeTitle>
-        <List data={trendingSongs} renderItem={renderSongItem} />
+        <List data={tracks} renderItem={renderSongItem} />
         <HomeTitle>Top picks for you</HomeTitle>
-        <List data={topPicksSongs} renderItem={renderSongItem} />
+        <List data={recommendedSongs} renderItem={recommendation} />
       </ScrollView>
     </LinearGradient>
   );

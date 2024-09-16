@@ -6,23 +6,29 @@ import colors from '../../Utils/colors';
 import {useNavigation} from '@react-navigation/native';
 import {image} from '../image';
 
-export const Card: FC<INavigation> = ({source}) => {
+export const Card: FC<INavigation> = ({source, name, title, onPress}) => {
   const navigation = useNavigation();
-
-  console.log('source==>', source);
 
   return (
     <Pressable
       style={({pressed}) => [pressed && styles.pressed]}
-      onPress={() => navigation.navigate('PlayList')}>
+      onPress={onPress}>
       <View style={styles.container}>
         <Image
           style={styles.imageStyle}
           source={source ? source : image.Artist}
         />
         <View style={{width: '30%'}}>
-          <Text style={{color: colors.primaryWhite, width: 140}}>
-            Ed Shereen, katty Perry, Pitbull, and more
+          {title && (
+            <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>
+              {title}
+            </Text>
+          )}
+          <Text
+            numberOfLines={1}
+            ellipsizeMode="tail"
+            style={{color: colors.primaryFonts, width: 140}}>
+            {name}
           </Text>
         </View>
       </View>

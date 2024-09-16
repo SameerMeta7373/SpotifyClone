@@ -3,7 +3,7 @@ import axios from 'axios';
 const client_id = '507923f2af184e5aa451248b05518197';
 const client_secret = 'f649964ae4074e49914dcf30b1dc49f7';
 const token =
-  'Bearer BQCeE8jQ5E04XLXsScwxHK9KMvSESjXgQedzIqt_fNR-ylLGS0PsnA3QijSdWJ7Gwm9qZAXFrW_Yu-iNRQkWhVyCgQ7Mvio0utbuWrszNJ2Rkd5hheM';
+  'Bearer   BQAzdTrjNCcCB3D3BVpwxBmXF5EtmF3Q2W5LlK1vf6QfVkvXN63bGAOpIUytKZBJYO-LVh_AwpBnvOsMM2jBPdQeZjs1_qGFsQypjhTpd7MiaYE2EUM';
 
 
   export function Token(token : string){
@@ -88,7 +88,7 @@ async function getGenres() {
 async function getSeveralAlbums() {
   try {
     const response = await axios.get(
-      'https://api.spotify.com/v1/albums?ids=382ObEPsp2rxGrnsizN5TX%2C1A2GTWGtFfWp7KSQTwWOyo%2C2noRn2Aes5aoNVsU6iWThc',
+      'https://api.spotify.com/v1/browse/new-releases',
       {
         headers: {
           Authorization: token,
@@ -101,10 +101,50 @@ async function getSeveralAlbums() {
     throw error;
   }
 }
+
+
+async function getSeveralTracks() {
+  try {
+    const response = await axios.get(
+      'https://api.spotify.com/v1/tracks?ids=7ouMYWpwJ422jRcDASZB7P%2C4VqPOruhp5EdPBeR92t6lQ%2C2takcwOaAZWiXQijPHIx7B',
+      {
+        headers: {
+          Authorization: token,
+        },
+      },
+    );
+    return response.data;
+  } catch (error) {
+    console.log('Error Fetching Spotify Data', error);
+    throw error;
+  }
+}
+
+async function getRecommendations() {
+  try {
+    const response = await axios.get(
+      'https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA',
+      {
+        headers: {
+          Authorization: token,
+        },
+      },
+    );
+    return response.data;
+  } catch (error) {
+    console.log('Error Fetching Spotify Data', error);
+    throw error;
+  }
+}
+
+
+
 export const Apis = {
   getToken,
   getSpotifyData,
   getCategories,
   getGenres,
   getSeveralAlbums,
+  getSeveralTracks,
+  getRecommendations
 };

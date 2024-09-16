@@ -1,4 +1,6 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet} from 'react-native';
+import colors from '../../Utils/colors';
+import Fonts from '../../Utils/Fonts';
 
 export const styles = StyleSheet.create({
   container: {
@@ -11,10 +13,18 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
   textStyle: {
-    color: 'white',
+    color: colors.primaryFonts,
+    fontFamily: Fonts.Gotham,
     fontSize: 16,
   },
-  pressed :{
-    opacity : 0.75
-  }
+  pressed: {
+    opacity: 0.75,
+  },
+  title: {
+    color: colors.primaryFonts,
+    width: 140,
+    fontSize: 16,
+    fontFamily: Fonts.Gotham,
+    fontWeight: 'bold',
+  },
 });

@@ -11,8 +11,8 @@ const styles = StyleSheet.create({
   },
   songDescription: {
     fontSize: 17,
-    color: '#A8A8A8',
-    fontFamily : Fonts.Poppins,
+    color: colors.primaryFonts,
+    fontFamily: Fonts.Poppins,
     paddingBottom: 20,
   },
   lowerContainer: {
@@ -43,6 +43,12 @@ const styles = StyleSheet.create({
   iconRootcontainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  likesText: {
+    fontSize: 18,
+    paddingTop: 14,
+    color: colors.primaryFonts,
+    paddingBottom: 20,
   },
 });
 

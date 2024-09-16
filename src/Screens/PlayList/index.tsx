@@ -30,12 +30,7 @@ function PlayList() {
               source={image.SpotifySmallLogo}
             />
             <Text
-              style={{
-                fontSize: 18,
-                paddingTop: 14,
-                color: '#A8A8A8',
-                paddingBottom: 20,
-              }}>
+              style={styles.likesText}>
               191,165 likes . 3h 45min
             </Text>
             <View style={styles.iconRootcontainer}>

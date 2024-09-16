@@ -31,6 +31,9 @@ export interface INavigation {
   style?: StyleProp<TextStyle>;
   children?: ReactNode;
   source?: string;
+  name?: string;
+  title?: string;
+  onPress?: () => void;
 }
 
 export interface IconsI {
@@ -46,7 +49,6 @@ export interface IBottomTabNavigation {
 export interface ISearchBar {
   placeholder: string;
   onSearch?: () => void;
-  
 }
 export interface ISearchCard {
   children: string;
