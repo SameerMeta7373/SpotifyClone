@@ -1,23 +1,22 @@
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {useEffect} from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { useEffect } from 'react';
 import BootSplash from 'react-native-bootsplash';
 import 'react-native-gesture-handler';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import AuthStack from './src/Components/Navigation/Auth';
-import {BottomTabNavigation} from './src/Components/Navigation/BottomTab';
-import colors from './src/Utils/colors';
-import {Apis, Token} from './src/Utils/https';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Icons from './src/Components/ImageIcons/Icons';
-import {image} from './src/Components/image';
-import {MusicPlayer} from './src/Screens/MusicPlayer';
+import AuthStack from './src/Components/Navigation/Auth';
+import { BottomTabNavigation } from './src/Components/Navigation/BottomTab';
+import { image } from './src/Components/image';
+import { MusicPlayer } from './src/Screens/MusicPlayer';
+import colors from './src/Utils/colors';
+import { Apis } from './src/Utils/https';
 
 const Stack = createStackNavigator();
 
 function App() {
   const getData = async () => {
     const token = await Apis.getToken();
-    Token(token);
     console.log('Token ===>', token);
   };
 

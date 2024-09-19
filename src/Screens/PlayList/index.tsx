@@ -5,8 +5,40 @@ import styles from './style';
 import ListCard from '../../Components/List/PlayList/PlayList';
 import {useNavigation} from '@react-navigation/native';
 import {ScrollView} from 'react-native-gesture-handler';
+import {Apis} from '../../Utils/https';
+import {useEffect, useState} from 'react';
 
-function PlayList() {
+function PlayList({route}) {
+  const [albums, setAlbums] = useState();
+  const [tracks, setTracks] = useState();
+
+  const albumId = route.params.albumId;
+
+  const getPlayList = async () => {
+    const response = await Apis.getAlbums(albumId);
+    setAlbums(response);
+  };
+
+  const getSongs = async () => {
+    const response = await Apis.getAlbums(albumId);
+    setTracks(response?.tracks?.items);
+  };
+
+  function FormattedTime(totalDurationMs) {
+    const hours = Math.floor(totalDurationMs / 3600000);
+    const minutes = Math.floor((totalDurationMs % 3600000) / 60000);
+    const seconds = Math.floor((totalDurationMs % 60000) / 1000);
+
+    const formatted = `${hours}h ${minutes}m ${seconds}s`;
+
+    return formatted;
+  }
+  
+  useEffect(() => {
+    getPlayList();
+    getSongs();
+  }, []);
+
   const navigation = useNavigation();
   return (
     <ScrollView>
@@ -17,21 +49,24 @@ function PlayList() {
           <View style={styles.upperConatiner}>
             <Image
               style={{height: 300, width: 280}}
-              source={image.ArtistProfile}
+              source={{uri: albums?.images[0]?.url}}
             />
           </View>
           <View style={styles.lowerContainer}>
             <Text style={styles.songDescription}>
-              Tune in to Top Tracks from Imagine Dragons, Alan Walker and many
-              more
+              Tune in to Top Tracks from{' '}
+              {albums?.artists.map(item => item.name).join()} and many more
             </Text>
             <Image
               style={{height: 30, width: 100}}
               source={image.SpotifySmallLogo}
             />
-            <Text
-              style={styles.likesText}>
-              191,165 likes . 3h 45min
+            <Text style={styles.likesText}>
+              {albums?.name} . {albums?.tracks?.total} Tracks .
+
+              {FormattedTime(
+                albums?.tracks?.items.reduce(
+                  (acc, track) => acc + track.duration_ms, 0))}
             </Text>
             <View style={styles.iconRootcontainer}>
               <View
@@ -49,8 +84,9 @@ function PlayList() {
             </View>
             <View style={{height: 1050}}>
               <ListCard
-                onPress={() => {
-                  navigation.navigate('MusicPlayer');
+                data={tracks}
+                onPress={(id) => {
+                  navigation.navigate('MusicPlayer', {trackId : id});
                 }}
               />
             </View>

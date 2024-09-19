@@ -6,7 +6,13 @@ import colors from '../../Utils/colors';
 import {useNavigation} from '@react-navigation/native';
 import {image} from '../image';
 
-export const Card: FC<INavigation> = ({source, name, title, onPress}) => {
+export const Card: FC<INavigation> = ({
+  source,
+  name,
+  title,
+  onPress,
+  albumName,
+}) => {
   const navigation = useNavigation();
 
   return (
@@ -19,10 +25,12 @@ export const Card: FC<INavigation> = ({source, name, title, onPress}) => {
           source={source ? source : image.Artist}
         />
         <View style={{width: '30%'}}>
-          {title && (
+          {title ? (
             <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>
               {title}
             </Text>
+          ) : (
+            <Text ellipsizeMode='tail' numberOfLines={1} style={styles.title}>{albumName}</Text>
           )}
           <Text
             numberOfLines={1}

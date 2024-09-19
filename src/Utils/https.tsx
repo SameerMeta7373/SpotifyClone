@@ -3,15 +3,14 @@ import axios from 'axios';
 const client_id = '507923f2af184e5aa451248b05518197';
 const client_secret = 'f649964ae4074e49914dcf30b1dc49f7';
 const token =
-  'Bearer   BQAzdTrjNCcCB3D3BVpwxBmXF5EtmF3Q2W5LlK1vf6QfVkvXN63bGAOpIUytKZBJYO-LVh_AwpBnvOsMM2jBPdQeZjs1_qGFsQypjhTpd7MiaYE2EUM';
-
-
-  export function Token(token : string){
-    token = `Bearer ${token}`
-  }
+  'Bearer BQBOeEIVa3cJvhgP6YlEgXro-8yoCJGj_pCUxhtA8PHzYGKzV7pymbYNnE79YU6lO_wl5ae13TPnyuVL5-2zZzTHDoZHLalCfUD3sEbSrXbt2uK1Fiw';
 
 async function getToken() {
   try {
+    if (token) {
+      return token;
+    }
+
     const response = await axios.post(
       'https://accounts.spotify.com/api/token',
       {
@@ -102,7 +101,6 @@ async function getSeveralAlbums() {
   }
 }
 
-
 async function getSeveralTracks() {
   try {
     const response = await axios.get(
@@ -137,7 +135,41 @@ async function getRecommendations() {
   }
 }
 
+async function getAlbums(id: string) {
+  try {
+    const response = await axios.get(
+      `https://api.spotify.com/v1/albums/${id}`,
+      {
+        headers: {
+          Authorization: token,
+        },
+      },
+    );
 
+    return response.data;
+  } catch (error) {
+    console.log('Error Fetching Spotify Data', error);
+    throw error;
+  }
+}
+
+async function getTrack(id: string) {
+  try {
+    const response = await axios.get(
+      `https://api.spotify.com/v1/tracks/${id}`,
+      {
+        headers: {
+          Authorization: token,
+        },
+      },
+    );
+
+    return response.data;
+  } catch (error) {
+    console.log('Error Fetching Spotify Data', error);
+    throw error;
+  }
+}
 
 export const Apis = {
   getToken,
@@ -146,5 +178,7 @@ export const Apis = {
   getGenres,
   getSeveralAlbums,
   getSeveralTracks,
-  getRecommendations
+  getRecommendations,
+  getAlbums,
+  getTrack,
 };

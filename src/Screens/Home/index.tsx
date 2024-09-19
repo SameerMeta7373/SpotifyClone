@@ -18,13 +18,9 @@ function HomeScreen() {
   const [albums, setAlbums] = useState([]);
   const [tracks, setTracks] = useState([]);
   const [recommendedSongs, setrecommendedSongs] = useState([]);
-  
 
   const getAlbums = async () => {
     const response = await Apis.getSeveralAlbums();
-
-    console.log('albums===>', JSON.stringify(response));
-
     setAlbums(response.albums.items);
   };
 
@@ -46,27 +42,48 @@ function HomeScreen() {
 
   const renderSingerItem = ({item}) => {
     const artistNames = item.artists.map(item => item?.name).join();
-    return <Card source={{uri: item.images[0].url}} name={artistNames} onPress={() => navigation.navigate('PlayList' , {id : item.id}) } />;
+    const albumName = item.name;
+    return (
+      <Card
+        // source={{uri: item.images[0].url}}
+        source={image.ArtistProfile}
+        albumName={albumName}
+        name={artistNames}
+        onPress={() => navigation.navigate('PlayList', {albumId: item.id})}
+      />
+    );
   };
 
   const renderSongItem: FC<IrenderSongItem> = ({item}) => {
+    const artistNames = item.artists.map(item => item?.name).join();
+    const songName = item.name;
+
+    // const image = item.images[0]
+    // console.log("image==============>",image);
+    
     return (
       <View style={{flexDirection: 'row', marginBottom: 10}}>
         <Card
-          title={item?.name}
-          name={item?.artists?.map(item => item?.name)}
+          // source={{uri: item.images[0].url}}
+          source={image.Artist}
+          title={songName}
+          name={artistNames}
+          onPress={() => navigation.navigate('MusicPlayer', {trackId: item.id})}
         />
       </View>
     );
   };
 
   const recommendation = ({item}) => {
+    const artistNames = item.artists.map(item => item?.name).join();
+    const songName = item.name;
     return (
       <View style={{flexDirection: 'row', marginBottom: 10}}>
         <Card
-          title={item?.name}
-          // onPress={}
-          name={'Song . ' + item?.artists?.map(item => item?.name).join()}
+          // source={{uri: item.images[0].url}}
+          title={songName}
+          name={'Song . ' + artistNames}
+          onPress={() => navigation.navigate('MusicPlayer', {trackId: item.id})}
         />
       </View>
     );

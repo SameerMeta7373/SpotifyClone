@@ -33,6 +33,7 @@ export interface INavigation {
   source?: string;
   name?: string;
   title?: string;
+  albumName?: string;
   onPress?: () => void;
 }
 
@@ -56,6 +57,7 @@ export interface ISearchCard {
 
 export interface IListCard {
   onPress: () => void;
+  data: string;
 }
 
 export interface IrenderSongItem {

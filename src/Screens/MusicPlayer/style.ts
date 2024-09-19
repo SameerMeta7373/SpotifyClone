@@ -4,8 +4,8 @@ import Fonts from '../../Utils/Fonts';
 
 export const styles = StyleSheet.create({
   ImageContainer: {
-    paddingHorizontal: 25,
-    paddingVertical: 40,
+    marginHorizontal: 20,
+    paddingVertical: 10,
   },
   ImageStyle: {
     height: 410,
@@ -28,9 +28,16 @@ export const styles = StyleSheet.create({
     color: colors.primaryWhite,
     fontWeight: '600',
   },
+  timer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 40,
+    paddingBottom: 15,
+  },
   slider: {
     width: 350,
-    height: 60,
+    marginTop: 20,
+    height: 30,
     alignSelf: 'center',
   },
   songControllContainer: {
@@ -40,7 +47,7 @@ export const styles = StyleSheet.create({
   },
   optionsContainer: {
     flexDirection: 'row',
-    paddingVertical: 20,
+    paddingVertical: 10,
     marginHorizontal: '10%',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -58,14 +65,15 @@ export const styles = StyleSheet.create({
     fontFamily: Fonts.Poppins,
   },
   headerSongName: {
-    fontSize: 19,
+    fontSize: 14,
     color: colors.primaryWhite,
     fontFamily: Fonts.Poppins,
+
     fontWeight: '600',
     alignSelf: 'center',
   },
   rootHeader: {
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: Fonts.Poppins,
     color: colors.primaryWhite,
     fontWeight: '500',
