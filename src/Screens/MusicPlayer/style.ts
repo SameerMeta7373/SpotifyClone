@@ -68,7 +68,7 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.primaryWhite,
     fontFamily: Fonts.Poppins,
-
+    maxWidth: 250,
     fontWeight: '600',
     alignSelf: 'center',
   },

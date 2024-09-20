@@ -9,13 +9,18 @@ import {useEffect, useRef, useState} from 'react';
 import {styles} from './style';
 import {Apis} from '../../Utils/https';
 import Sound from 'react-native-sound';
+import Share from 'react-native-share';
+import PlayList from '../PlayList';
 
 export function MusicPlayer({route}) {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [trackSong, setTrackSong] = useState();
   const [position, setPosition] = useState(0);
   const [song, setSong] = useState();
-  const {trackId} = route.params;
+  const [color, setColor] = useState<string>();
+  const [currIndex, setCurrIndex] = useState<number>(0);
+  const {trackId, playList} = route.params;
+
   const interval = useRef<NodeJS.Timeout | null>(null);
 
   function formattedTime(totalDurationMs) {
@@ -25,8 +30,8 @@ export function MusicPlayer({route}) {
     return formatted;
   }
 
-  const getSongs = async () => {
-    const response = await Apis.getTrack(trackId);
+  const getSongs = async songId => {
+    const response = await Apis.getTrack(songId);
     setTrackSong(response);
     const previewUrl = response?.preview_url;
     if (previewUrl) {
@@ -67,14 +72,17 @@ export function MusicPlayer({route}) {
     }
   };
 
-  function randomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 8)];
+  useEffect(() => {
+    function randomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 8)];
+      }
+      setColor(color);
     }
-    return color;
-  }
+    randomColor();
+  }, [trackId]);
 
   const onSliderChange = (value: number) => {
     if (song) {
@@ -92,8 +100,60 @@ export function MusicPlayer({route}) {
     }, 1000);
   };
 
+  function share() {
+    if (trackSong) {
+      const options = {
+        url: trackSong?.preview_url,
+      };
+      Share.open(options)
+        .then(res => {
+          console.log('Shared successfully:', res);
+        })
+        .catch(err => {
+          if (err) {
+            console.log('Error sharing:', err);
+          }
+        });
+    } else {
+      Alert.alert('Error', 'No track information available for sharing');
+    }
+  }
+
+  const handleNextTrack = () => {
+    const nextIndex = currIndex + 1;
+    if (nextIndex < playList.length) {
+      setCurrIndex(nextIndex);
+      getSongs(playList[nextIndex].id);
+      setIsPlaying(false);
+    } else {
+      console.log('Reached end of playlist');
+    }
+  };
+
+  const shuffleTracks = () => {
+    const randomIndex = Math.floor(Math.random() * playList?.length);
+    if (randomIndex < playList.length) {
+      setCurrIndex(randomIndex);
+      getSongs(playList[randomIndex].id);
+      setIsPlaying(false);
+    } else {
+      console.log('Reached end of playlist');
+    }
+  };
+
+  const handlePreviousTrack = () => {
+    const nextIndex = currIndex - 1;
+    if (nextIndex < playList.length) {
+      setCurrIndex(nextIndex);
+      getSongs(playList[nextIndex].id);
+      setIsPlaying(false);
+    } else {
+      console.log('Reached end of playlist');
+    }
+  };
+
   useEffect(() => {
-    getSongs();
+    getSongs(trackId);
     return () => {
       clearInterval(interval.current);
       song?.release();
@@ -107,7 +167,10 @@ export function MusicPlayer({route}) {
         style={{flex: 1}}>
         <View style={{alignItems: 'center', paddingVertical: 8}}>
           <Text style={styles.rootHeader}>PLAYING FROM SEARCH</Text>
-          <Text style={styles.headerSongName}>
+          <Text
+            ellipsizeMode="tail"
+            numberOfLines={1}
+            style={styles.headerSongName}>
             "{trackSong?.name}" in Songs
           </Text>
         </View>
@@ -145,23 +208,35 @@ export function MusicPlayer({route}) {
           </Text>
         </View>
         <View style={styles.songControllContainer}>
-          <Icons source={image.Shuffle} />
-          <Icons style={{height: 30, width: 25}} source={image.PreviousPlay} />
+          <Icons source={image.Shuffle} onPress={shuffleTracks} />
+          <Icons
+            style={{height: 30, width: 25}}
+            source={image.PreviousPlay}
+            onPress={handlePreviousTrack}
+          />
 
           <Icons
             style={{height: 70, width: 70}}
             source={isPlaying ? image.Pause : image.WhitePlayButton}
             onPress={songHandler}
           />
-          <Icons style={{height: 30, width: 25}} source={image.NextPlay} />
+          <Icons
+            style={{height: 30, width: 25}}
+            source={image.NextPlay}
+            onPress={handleNextTrack}
+          />
           <Icons source={image.Loop} />
         </View>
 
         <View style={styles.optionsContainer}>
           <Icons style={{height: 30, width: 30}} source={image.Cast} />
-          <Icons style={{height: 20, width: 20}} source={image.Share} />
+          <Icons
+            style={{height: 20, width: 20}}
+            source={image.Share}
+            onPress={share}
+          />
         </View>
-        <View style={[styles.lyrics, {backgroundColor: randomColor()}]}>
+        <View style={[styles.lyrics, {backgroundColor: color}]}>
           <Text style={styles.lyricsHeading}>Lyrics</Text>
         </View>
       </LinearGradient>

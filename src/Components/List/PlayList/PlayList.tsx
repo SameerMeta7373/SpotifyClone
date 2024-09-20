@@ -15,7 +15,7 @@ const ListCard: FC<IListCard> = ({onPress, data,}) => {
 
         return (
           <Pressable
-            onPress={() => onPress(item.id)}
+            onPress={() => onPress(item.id, item)}
             style={({pressed}) => pressed && {opacity: 0.5}}>
             <View style={styles.rootContainer}>
               <View style={{flexDirection: 'row'}}>

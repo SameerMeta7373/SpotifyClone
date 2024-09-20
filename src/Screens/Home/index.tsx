@@ -56,37 +56,47 @@ function HomeScreen() {
 
   const renderSongItem: FC<IrenderSongItem> = ({item}) => {
     const artistNames = item.artists.map(item => item?.name).join();
+    // const previewUrl = item?.preview_url
     const songName = item.name;
 
     // const image = item.images[0]
     // console.log("image==============>",image);
-    
-    return (
-      <View style={{flexDirection: 'row', marginBottom: 10}}>
-        <Card
-          // source={{uri: item.images[0].url}}
-          source={image.Artist}
-          title={songName}
-          name={artistNames}
-          onPress={() => navigation.navigate('MusicPlayer', {trackId: item.id})}
-        />
-      </View>
-    );
+
+    if (item?.preview_url) {
+      return (
+        <View style={{flexDirection: 'row', marginBottom: 10}}>
+          <Card
+            // source={{uri: item.images[0].url}}
+            source={image.Artist}
+            title={songName}
+            name={artistNames}
+            onPress={() =>
+              navigation.navigate('MusicPlayer', {trackId: item.id})
+            }
+          />
+        </View>
+      );
+    }
   };
 
   const recommendation = ({item}) => {
     const artistNames = item.artists.map(item => item?.name).join();
     const songName = item.name;
-    return (
-      <View style={{flexDirection: 'row', marginBottom: 10}}>
-        <Card
-          // source={{uri: item.images[0].url}}
-          title={songName}
-          name={'Song . ' + artistNames}
-          onPress={() => navigation.navigate('MusicPlayer', {trackId: item.id})}
-        />
-      </View>
-    );
+
+    if (item?.preview_url) {
+      return (
+        <View style={{flexDirection: 'row', marginBottom: 10}}>
+          <Card
+            // source={{uri: item.images[0].url}}
+            title={songName}
+            name={'Song . ' + artistNames}
+            onPress={() =>
+              navigation.navigate('MusicPlayer', {trackId: item.id})
+            }
+          />
+        </View>
+      );
+    }
   };
 
   return (

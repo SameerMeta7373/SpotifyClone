@@ -21,7 +21,10 @@ function PlayList({route}) {
 
   const getSongs = async () => {
     const response = await Apis.getAlbums(albumId);
-    setTracks(response?.tracks?.items);
+    const previewUrl = response?.tracks?.items[0]?.preview_url;
+    if (previewUrl) {
+      setTracks(response?.tracks?.items);
+    }
   };
 
   function FormattedTime(totalDurationMs) {
@@ -33,7 +36,8 @@ function PlayList({route}) {
 
     return formatted;
   }
-  
+
+
   useEffect(() => {
     getPlayList();
     getSongs();
@@ -63,10 +67,12 @@ function PlayList({route}) {
             />
             <Text style={styles.likesText}>
               {albums?.name} . {albums?.tracks?.total} Tracks .
-
               {FormattedTime(
                 albums?.tracks?.items.reduce(
-                  (acc, track) => acc + track.duration_ms, 0))}
+                  (acc, track) => acc + track.duration_ms,
+                  0,
+                ),
+              )}
             </Text>
             <View style={styles.iconRootcontainer}>
               <View
@@ -86,7 +92,7 @@ function PlayList({route}) {
               <ListCard
                 data={tracks}
                 onPress={(id) => {
-                  navigation.navigate('MusicPlayer', {trackId : id});
+                  navigation.navigate('MusicPlayer', {trackId: id, playList: tracks });
                 }}
               />
             </View>
