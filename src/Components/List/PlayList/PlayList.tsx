@@ -20,7 +20,7 @@ const ListCard: FC<IListCard> = ({onPress, data,}) => {
             <View style={styles.rootContainer}>
               <View style={{flexDirection: 'row'}}>
                 <View>
-                  <Image style={styles.imageStyle} source={image.believer} />
+                  <Image style={styles.imageStyle} source={image.ArtistProfile} />
                 </View>
                 <View style={{margin: '2%'}}>
                   <Text

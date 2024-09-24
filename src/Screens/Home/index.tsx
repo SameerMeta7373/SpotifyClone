@@ -1,17 +1,17 @@
-import {FlatList, StyleSheet, Text, View} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import colors from '../../Utils/colors';
+import {useNavigation} from '@react-navigation/native';
+import {FC, useEffect, useState} from 'react';
+import {View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {HomeTitle} from '../../Components/Title/HomeTitle';
+import LinearGradient from 'react-native-linear-gradient';
 import {Card} from '../../Components/Card/Card';
 import {image} from '../../Components/image';
 import Icons from '../../Components/ImageIcons/Icons';
-import {styles} from './style';
 import {List} from '../../Components/List/flatList';
-import {FC, useEffect, useState} from 'react';
+import {HomeTitle} from '../../Components/Title/HomeTitle';
 import {IrenderSongItem} from '../../Constants/interface';
 import {Apis} from '../../Utils/https';
-import {useNavigation} from '@react-navigation/native';
+import {styles} from './style';
+import {height, width} from '../../Utils/dimension';
 
 function HomeScreen() {
   const navigation = useNavigation();
@@ -98,13 +98,11 @@ function HomeScreen() {
       );
     }
   };
-
   return (
     <LinearGradient
       colors={['#484C4D', '#121212', '#121212']}
       style={styles.linearGradient}>
       <ScrollView
-        style={styles.rootContainer}
         contentContainerStyle={{paddingHorizontal: 10, paddingBottom: 40}}>
         <View style={styles.titleIcon}>
           <HomeTitle>Made for you</HomeTitle>

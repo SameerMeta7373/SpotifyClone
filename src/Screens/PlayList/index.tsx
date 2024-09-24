@@ -1,12 +1,13 @@
-import {FlatList, Image, Pressable, StyleSheet, Text, View} from 'react-native';
-import {image} from '../../Components/image';
+import { useNavigation } from '@react-navigation/native';
+import { useEffect, useState } from 'react';
+import { Image, Text, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
-import styles from './style';
+import { image } from '../../Components/image';
+import Icons from '../../Components/ImageIcons/Icons';
 import ListCard from '../../Components/List/PlayList/PlayList';
-import {useNavigation} from '@react-navigation/native';
-import {ScrollView} from 'react-native-gesture-handler';
-import {Apis} from '../../Utils/https';
-import {useEffect, useState} from 'react';
+import { Apis } from '../../Utils/https';
+import styles from './style';
 
 function PlayList({route}) {
   const [albums, setAlbums] = useState();
@@ -36,8 +37,6 @@ function PlayList({route}) {
 
     return formatted;
   }
-
-
   useEffect(() => {
     getPlayList();
     getSongs();
@@ -53,8 +52,9 @@ function PlayList({route}) {
           <View style={styles.upperConatiner}>
             <Image
               style={{height: 300, width: 280}}
-              source={{uri: albums?.images[0]?.url}}
+              source={image.ArtistProfile}
             />
+            {/* uri: albums?.images[0]?.url */}
           </View>
           <View style={styles.lowerContainer}>
             <Text style={styles.songDescription}>
@@ -66,8 +66,7 @@ function PlayList({route}) {
               source={image.SpotifySmallLogo}
             />
             <Text style={styles.likesText}>
-              {albums?.name} . {albums?.tracks?.total} Tracks .
-              {FormattedTime(
+              {albums?.name} . {albums?.tracks?.total} Tracks. {FormattedTime(
                 albums?.tracks?.items.reduce(
                   (acc, track) => acc + track.duration_ms,
                   0,
@@ -76,16 +75,12 @@ function PlayList({route}) {
             </Text>
             <View style={styles.iconRootcontainer}>
               <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <Image style={styles.imageStyle} source={image.Heart} />
-                <Image style={styles.properties} source={image.Properties} />
+                style={styles.iconContainer}>
+                <Icons style={styles.imageStyle} source={image.Heart} />
+                <Icons style={styles.properties} source={image.Properties} />
               </View>
               <View style={{paddingRight: 6}}>
-                <Image style={styles.playButton} source={image.PlayButton} />
+                <Icons style={styles.playButton} source={image.PlayButton} />
               </View>
             </View>
             <View style={{height: 1050}}>

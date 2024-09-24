@@ -13,17 +13,18 @@ export const styles = StyleSheet.create({
   },
   songNameContainer: {
     flexDirection: 'row',
+    
     alignItems: 'center',
     justifyContent: 'center',
   },
   songName: {
-    fontSize: 24,
+    fontSize: 22,
     fontFamily: Fonts.Gotham,
     color: colors.primaryWhite,
     fontWeight: 'bold',
   },
   singerName: {
-    fontSize: 20,
+    fontSize: 18,
     fontFamily: Fonts.Gotham,
     color: colors.primaryWhite,
     fontWeight: '600',

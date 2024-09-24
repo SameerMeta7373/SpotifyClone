@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import Fonts from '../../../Utils/Fonts';
+import colors from '../../../Utils/colors';
 
 export const styles = StyleSheet.create({
   rootContainer: {
@@ -14,21 +15,21 @@ export const styles = StyleSheet.create({
     margin: 5,
   },
   textStyle: {
-    color: '#A8A8A8',
+    color: colors.primaryFonts,
     fontSize: 16,
     fontFamily: Fonts.Gotham,
   },
   titleTextStyle: {
     marginVertical: 5,
     textAlignVertical: 'center',
-    color: 'white',
+    color: colors.primaryWhite,
     fontSize: 20,
     fontFamily: Fonts.Gotham,
     fontWeight: '900',
   },
   lyricsText: {
-    backgroundColor: '#c5c4c4',
-    color: 'black',
+    backgroundColor: colors.primaryFonts,
+    color: colors.primaryBlack,
     paddingHorizontal: 3,
     fontSize: 10,
     fontFamily: Fonts.Gotham,

@@ -7,8 +7,20 @@ import {image} from '../../Components/image';
 import {INavigation} from '../../Constants/interface';
 import {FC} from 'react';
 import {styles} from './style';
+import {Apis} from '../../Utils/https';
+import {useDispatch} from 'react-redux';
+import {logIn} from '../../../Store/Redux/authSlice';
 
 const LoginScreen: FC<INavigation> = ({navigation}) => {
+  const dispatch = useDispatch();
+
+  const getToken = async () => {
+    // console.log('Token ===>', );
+    const token = await Apis.getToken();
+    console.log('token====>', token);
+    dispatch(logIn(token));
+  };
+
   return (
     <View style={{padding: 20}}>
       <View style={styles.imageContainer}>
@@ -22,7 +34,8 @@ const LoginScreen: FC<INavigation> = ({navigation}) => {
       <CButton
         text="Sign In"
         onPress={() => {
-          navigation.navigate('HomeScreen');
+          getToken();
+         
         }}
         margin={{marginLeft: '35%'}}
         backColor={{backgroundColor: colors.primaryTheme}}

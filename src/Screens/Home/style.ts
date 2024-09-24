@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../Utils/colors';
 import Fonts from '../../Utils/Fonts';
+import {height, width} from '../../Utils/dimension';
 
 export const styles = StyleSheet.create({
   linearGradient: {
@@ -14,14 +15,10 @@ export const styles = StyleSheet.create({
     color: colors.primaryWhite,
     backgroundColor: 'transparent',
   },
-  rootContainer: {
-    flex: 1,
-    height: 950,
-  },
   iconContainer: {
     flexDirection: 'row',
-    marginVertical: 25,
-    marginHorizontal: 60,
+    marginVertical: height * 2.5,
+    marginHorizontal: width * 17,
   },
   textStyle: {
     color: colors.primaryWhite,

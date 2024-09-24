@@ -1,16 +1,16 @@
-import {Alert, Image, StyleSheet, Text, View} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import {image} from '../../Components/image';
-import Icons from '../../Components/ImageIcons/Icons';
-import {ScrollView} from 'react-native-gesture-handler';
 import Slider from '@react-native-community/slider';
-import colors from '../../Utils/colors';
-import {useEffect, useRef, useState} from 'react';
-import {styles} from './style';
-import {Apis} from '../../Utils/https';
-import Sound from 'react-native-sound';
+import { useEffect, useRef, useState } from 'react';
+import { Alert, Image, Text, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import LinearGradient from 'react-native-linear-gradient';
 import Share from 'react-native-share';
-import PlayList from '../PlayList';
+import Sound from 'react-native-sound';
+import { image } from '../../Components/image';
+import Icons from '../../Components/ImageIcons/Icons';
+import colors from '../../Utils/colors';
+import { Apis } from '../../Utils/https';
+import { styles } from './style';
+
 
 export function MusicPlayer({route}) {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -121,7 +121,7 @@ export function MusicPlayer({route}) {
 
   const handleNextTrack = () => {
     const nextIndex = currIndex + 1;
-    if (nextIndex < playList.length) {
+    if (playList && nextIndex < playList.length) {
       setCurrIndex(nextIndex);
       getSongs(playList[nextIndex].id);
       setIsPlaying(false);
@@ -143,7 +143,7 @@ export function MusicPlayer({route}) {
 
   const handlePreviousTrack = () => {
     const nextIndex = currIndex - 1;
-    if (nextIndex < playList.length) {
+    if (playList && nextIndex < playList.length) {
       setCurrIndex(nextIndex);
       getSongs(playList[nextIndex].id);
       setIsPlaying(false);
@@ -175,7 +175,7 @@ export function MusicPlayer({route}) {
           </Text>
         </View>
         <View style={styles.ImageContainer}>
-          <Image style={styles.ImageStyle} source={trackSong?.uri} />
+          <Image style={styles.ImageStyle} source={image.ArtistProfile} />
         </View>
         <View style={styles.songNameContainer}>
           <View style={{width: 300, marginHorizontal: 20}}>

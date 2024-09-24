@@ -1,15 +1,16 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../Utils/colors';
 import Fonts from '../../Utils/Fonts';
+import { height, width } from '../../Utils/dimension';
 
 export const styles = StyleSheet.create({
   container: {
-    padding: 10,
+    padding: 8,
     justifyContent: 'center',
   },
   imageStyle: {
-    width: 170,
-    height: 170,
+    width: width * 42,
+    height: height * 22,
     marginBottom: 10,
   },
   textStyle: {
@@ -22,7 +23,7 @@ export const styles = StyleSheet.create({
   },
   title: {
     color: colors.primaryFonts,
-    width: 140,
+    width: width * 42,
     fontSize: 16,
     fontFamily: Fonts.Gotham,
     fontWeight: 'bold',
