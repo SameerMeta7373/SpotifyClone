@@ -1,30 +1,51 @@
 import axios from 'axios';
+import {logOut} from '../../Store/Redux/authSlice';
+import {store} from '../../Store/Redux/store';
 
 const client_id = '507923f2af184e5aa451248b05518197';
 const client_secret = 'f649964ae4074e49914dcf30b1dc49f7';
-const token =
-  'Bearer BQAMDMY2WP8ukqAWCOReoyGv1v7kNP0KM26QjWTh-cKXWhfywPzc73co8rM-4Pc4tz2dEsjV2AIcOjuuvQPLEeWGJfMEGyvf_BcaDn_t3Zq4pBZA77k';
+
+const accountInstance = axios.create({
+  baseURL: 'https://accounts.spotify.com/api',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+  },
+});
+
+const apiInstance = axios.create({
+  baseURL: 'https://api.spotify.com/v1',
+});
+
+apiInstance.interceptors.request.use(
+  function (config) {
+    let token = store.getState()?.auth?.token;
+    config.headers.Authorization = `Bearer ${token}`;
+    return config;
+  },
+  function (error) {
+    return Promise.reject(error);
+  },
+);
+
+apiInstance.interceptors.response.use(
+  response => response,
+  error => {
+    if (error.response && error.response.status === 401) {
+      store.dispatch(logOut());
+    }
+    return Promise.reject(error);
+  },
+);
 
 async function getToken() {
   try {
-    if (token) {
-      return token;
-    }
+    const response = await accountInstance.post('/token', {
+      grant_type: `client_credentials`,
+      client_id: `${client_id}`,
+      client_secret: `${client_secret}`,
+    });
+    console.log('response====>', response);
 
-    const response = await axios.post(
-      'https://accounts.spotify.com/api/token',
-      {
-        grant_type: `client_credentials`,
-        client_id: `${client_id}`,
-        client_secret: `${client_secret}`,
-      },
-      {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      },
-    );
-    // console.log('response', response);
     return response.data.access_token;
   } catch (error) {
     console.log('Error Fetching token', error);
@@ -32,34 +53,9 @@ async function getToken() {
   }
 }
 
-async function getSpotifyData(access_token: string) {
-  try {
-    const response = await axios.get(
-      'https://api.spotify.com/v1/artists/6rqhFgbbKwnb9MLmUQDhG6',
-      {
-        headers: {
-          Authorization:
-            'Bearer BQAky77wJbgXqqD6nXryO9YVGcxUOapaY2i_GB7JIBjKwo4PxV6BhqFoVGIi46K3ZtqTdmbL4iGnIF2gm_tN0QakgmSt3eq_Z4kOtQizv4ineHNKPQs',
-        },
-      },
-    );
-    return response.data;
-  } catch (error) {
-    console.log('Error Fetching Spotify Data', error);
-    throw error;
-  }
-}
-
 async function getCategories() {
   try {
-    const response = await axios.get(
-      'https://api.spotify.com/v1/browse/categories',
-      {
-        headers: {
-          Authorization: token,
-        },
-      },
-    );
+    const response = await apiInstance.get('/browse/categories');
     return response.data;
   } catch (error) {
     console.log('Error Fetching Spotify Data', error);
@@ -69,13 +65,8 @@ async function getCategories() {
 
 async function getGenres() {
   try {
-    const response = await axios.get(
-      'https://api.spotify.com/v1/recommendations/available-genre-seeds',
-      {
-        headers: {
-          Authorization: token,
-        },
-      },
+    const response = await apiInstance.get(
+      '/recommendations/available-genre-seeds',
     );
     return response.data;
   } catch (error) {
@@ -86,14 +77,7 @@ async function getGenres() {
 
 async function getSeveralAlbums() {
   try {
-    const response = await axios.get(
-      'https://api.spotify.com/v1/browse/new-releases',
-      {
-        headers: {
-          Authorization: token,
-        },
-      },
-    );
+    const response = await apiInstance.get('/browse/new-releases');
     return response.data;
   } catch (error) {
     console.log('Error Fetching Spotify Data', error);
@@ -103,13 +87,8 @@ async function getSeveralAlbums() {
 
 async function getSeveralTracks() {
   try {
-    const response = await axios.get(
-      'https://api.spotify.com/v1/tracks?ids=7ouMYWpwJ422jRcDASZB7P%2C4VqPOruhp5EdPBeR92t6lQ%2C2takcwOaAZWiXQijPHIx7B',
-      {
-        headers: {
-          Authorization: token,
-        },
-      },
+    const response = await apiInstance.get(
+      '/tracks?ids=7ouMYWpwJ422jRcDASZB7P%2C4VqPOruhp5EdPBeR92t6lQ%2C2takcwOaAZWiXQijPHIx7B',
     );
     return response.data;
   } catch (error) {
@@ -120,13 +99,8 @@ async function getSeveralTracks() {
 
 async function getRecommendations() {
   try {
-    const response = await axios.get(
-      'https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA',
-      {
-        headers: {
-          Authorization: token,
-        },
-      },
+    const response = await apiInstance.get(
+      '/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA',
     );
     return response.data;
   } catch (error) {
@@ -137,14 +111,7 @@ async function getRecommendations() {
 
 async function getAlbums(id: string) {
   try {
-    const response = await axios.get(
-      `https://api.spotify.com/v1/albums/${id}`,
-      {
-        headers: {
-          Authorization: token,
-        },
-      },
-    );
+    const response = await apiInstance.get(`/albums/${id}`);
 
     return response.data;
   } catch (error) {
@@ -155,14 +122,7 @@ async function getAlbums(id: string) {
 
 async function getTrack(id: string) {
   try {
-    const response = await axios.get(
-      `https://api.spotify.com/v1/tracks/${id}`,
-      {
-        headers: {
-          Authorization: token,
-        },
-      },
-    );
+    const response = await apiInstance.get(`tracks/${id}`);
 
     return response.data;
   } catch (error) {
@@ -173,7 +133,6 @@ async function getTrack(id: string) {
 
 export const Apis = {
   getToken,
-  getSpotifyData,
   getCategories,
   getGenres,
   getSeveralAlbums,
