@@ -16,7 +16,7 @@ const LoginScreen: FC<INavigation> = ({navigation}) => {
 
   const getToken = async () => {
     // console.log('Token ===>', );
-    const token = await Apis.getToken();
+    const token = await Apis.getToken()
     console.log('token====>', token);
     dispatch(logIn(token));
   };

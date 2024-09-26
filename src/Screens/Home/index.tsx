@@ -108,8 +108,8 @@ function HomeScreen() {
           <HomeTitle>Made for you</HomeTitle>
           <View style={styles.iconContainer}>
             <Icons source={image.BellLogo} />
-            <Icons style={{marginLeft: 23}} source={image.HistoryLogo} />
-            <Icons style={{marginLeft: 23}} source={image.SettingsLogo} />
+            <Icons style={{marginLeft: 17}} source={image.HistoryLogo} />
+            <Icons style={{marginLeft: 17}} source={image.SettingsLogo} />
           </View>
         </View>
         <List data={albums} renderItem={renderSingerItem} />

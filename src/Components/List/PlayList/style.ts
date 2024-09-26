@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     marginVertical: 5,
     textAlignVertical: 'center',
     color: colors.primaryWhite,
-    fontSize: 20,
+    fontSize: 18,
     fontFamily: Fonts.Gotham,
     fontWeight: '900',
   },

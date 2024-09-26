@@ -45,6 +45,21 @@ const styles = StyleSheet.create({
   linearGradient: {
     flex: 1,
   },
+  headerTextAnimation: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    padding: 13,
+    marginHorizontal: 20,
+    color: colors.primaryWhite,
+  },
+  headerContainerAnimation: {
+    flexDirection: 'row',
+    height: 60,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+  },
   iconRootcontainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',

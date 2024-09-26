@@ -11,7 +11,6 @@ import {useSelector} from 'react-redux';
 
 const MainNavigation = () => {
   const auth = useSelector(state => state.auth);
-
   console.log("auth========>",auth?.isLoggedIn);
   
 

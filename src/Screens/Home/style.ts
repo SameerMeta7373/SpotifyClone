@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
   iconContainer: {
     flexDirection: 'row',
     marginVertical: height * 2.5,
-    marginHorizontal: width * 17,
+    marginHorizontal: width * 14,
   },
   textStyle: {
     color: colors.primaryWhite,

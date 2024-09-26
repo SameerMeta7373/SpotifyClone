@@ -56,8 +56,8 @@ export interface ISearchCard {
 }
 
 export interface IListCard {
-  onPress: () => void;
-  data: string;
+  onPress?: () => void;
+  data?: string;
 }
 
 export interface IrenderSongItem {

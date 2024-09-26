@@ -33,15 +33,14 @@ export function StackScreen() {
         name="PlayList"
         component={PlayList}
         options={props => ({
-          headerTransparent: true,
-          headerTitle: '',
-          headerLeft: () => (
-            <Icons
-              source={image.back}
-              style={{marginLeft: 20}}
-              onPress={() => props?.navigation?.goBack()}
-            />
-          ),
+          headerTransparent: false,
+          // headerLeft: () => (
+          //   <Icons
+          //     source={image.back}
+          //     style={{marginLeft: 20}}
+          //     onPress={() => props?.navigation?.goBack()}
+          //   />
+          // ),
         })}
       />
     </Stack.Navigator>

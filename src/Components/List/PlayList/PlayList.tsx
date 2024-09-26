@@ -22,7 +22,7 @@ const ListCard: FC<IListCard> = ({onPress, data,}) => {
                 <View>
                   <Image style={styles.imageStyle} source={image.ArtistProfile} />
                 </View>
-                <View style={{margin: '2%'}}>
+                <View style={{margin: '2%', width : '70%'}}>
                   <Text
                     ellipsizeMode="tail"
                     numberOfLines={1}
