@@ -1,7 +1,7 @@
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-import { useNavigation } from '@react-navigation/native';
-import { useEffect, useLayoutEffect, useState } from 'react';
-import { Image, Text, View } from 'react-native';
+import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+import {useNavigation} from '@react-navigation/native';
+import {useEffect, useLayoutEffect, useState} from 'react';
+import {Image, Text, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Animated, {
   interpolate,
@@ -10,11 +10,11 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
-import { image } from '../../Components/image';
+import {image} from '../../Components/image';
 import Icons from '../../Components/ImageIcons/Icons';
 import ListCard from '../../Components/List/PlayList/PlayList';
-import { height } from '../../Utils/dimension';
-import { Apis } from '../../Utils/https';
+import {height} from '../../Utils/dimension';
+import {Apis} from '../../Utils/https';
 import styles from './style';
 
 function PlayList({route}) {
@@ -90,7 +90,6 @@ function PlayList({route}) {
           <Animated.View style={[animatedTitleView]}>
             <Text style={styles.headerTextAnimation}>{albums?.name}</Text>
           </Animated.View>
-          <View style={{flex: 0.2}}></View>
         </Animated.View>
       ),
     });

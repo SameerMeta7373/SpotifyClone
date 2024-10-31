@@ -1,16 +1,15 @@
 import Slider from '@react-native-community/slider';
-import { useEffect, useRef, useState } from 'react';
-import { Alert, Image, Text, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import {useEffect, useRef, useState} from 'react';
+import {Alert, Image, Text, View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import Share from 'react-native-share';
 import Sound from 'react-native-sound';
-import { image } from '../../Components/image';
+import {image} from '../../Components/image';
 import Icons from '../../Components/ImageIcons/Icons';
 import colors from '../../Utils/colors';
-import { Apis } from '../../Utils/https';
-import { styles } from './style';
-
+import {Apis} from '../../Utils/https';
+import {styles} from './style';
 
 export function MusicPlayer({route}) {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -48,27 +47,26 @@ export function MusicPlayer({route}) {
             track?.getNumberOfChannels(),
         );
       });
-      track?.play();
+      // track?.play();
     } else {
       Alert.alert('Preview_url', 'No Preview_url Found');
     }
   };
 
-  const songHandler = async () => {
-    if (!song) {
-      return;
-    }
-    if (isPlaying) {
-      await song?.pause();
-      setIsPlaying(false);
-    } else {
-      await song?.play(() => {
+  const songHandler = () => {
+    if (song) {
+      if (!isPlaying) {
+        song?.play();
+        setIsPlaying(true);
+      } else {
+        song?.pause();
         setIsPlaying(false);
-        setPosition(0);
-        clearInterval(interval.current);
-      });
+        // setPosition(0);
+        // clearInterval(interval.current);
+
+        // setIsPlaying(true);
+      }
       updatingSlider();
-      setIsPlaying(true);
     }
   };
 
@@ -124,6 +122,7 @@ export function MusicPlayer({route}) {
     if (playList && nextIndex < playList.length) {
       setCurrIndex(nextIndex);
       getSongs(playList[nextIndex].id);
+      setPosition(0);
       setIsPlaying(false);
     } else {
       console.log('Reached end of playlist');
